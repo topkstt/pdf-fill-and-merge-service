@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  node:
+    platform: 'linux/x86_64'
+    build:
+      context: ./docker
+      dockerfile: DockerFile
+    tty: true
+    image: pdf-fill-and-merge-service
+    command: sh -c 'yarn install && yarn start'
+    ports:
+      - 3050:3050
+    volumes:
+      - .:/app
+    networks:
+      - pdf-fill
+networks:
+  pdf-fill:
